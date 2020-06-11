@@ -35,13 +35,17 @@ public class ChocolateProblem {
 		int pricePerChocolate = c;
 		int offer = f;
 		String answer = null;
+		Boolean flag = false;
 		
 		if(m>c) {
 			int initialChocolate=money/pricePerChocolate;
 			int initialWrapper = money/pricePerChocolate;
-			while (initialWrapper%offer != 0) {
+			while (flag != true) {
 				initialChocolate+=initialWrapper/offer;
 				initialWrapper=initialWrapper/offer+initialWrapper%offer;
+				if(initialWrapper>=0 && initialWrapper<offer) {
+					flag = true;
+				}
 			}
 			totalChocolate=initialChocolate;
 			answer = "Sanjay got a total of "+totalChocolate+" choclates.";
