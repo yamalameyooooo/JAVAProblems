@@ -28,29 +28,23 @@ public class ChocolateProblem {
 	 * eat in total.
 	 */
 
-	@GetMapping("/{m}/{c}")
-	public String eatChocolates(@PathVariable(value = "m") int m,@PathVariable(value = "c") int c) {
+	@GetMapping("/{m}/{c}/{f}")
+	public String eatChocolates(@PathVariable(value = "m") int m,@PathVariable(value = "c") int c,@PathVariable(value = "f") int f) {
 		int totalChocolate;
-		int extra=0;
 		int money = m;
 		int pricePerChocolate = c;
-		int offer = 3;
+		int offer = f;
 		String answer = null;
 		
 		if(m>c) {
-			int initialChocolate=m/c;
-//			if initialChocolate = 3 get total 4 wrapper 
-//			if initialChocolate = 4 get total 5 wrapper 
-//			if initialChocolate = 5 get total 7 wrapper 
-//			if initialChocolate = 6 get total 8 wrapper 
-//			if initialChocolate = 7 get total 10 wrapper 
-//			if initialChocolate = 8 get total 11 wrapper 
-//			if initialChocolate = 9 get total 13 wrapper
-//			if initialChocolate = 10 get total 10 wrapper 
-//			if initialChocolate = 11 get total 16 wrapper 
-
-//			extra+=1
-			answer = "Sanjay can buy. OKAY! i am coding how many choclates now";
+			int initialChocolate=money/pricePerChocolate;
+			int initialWrapper = money/pricePerChocolate;
+			while (initialWrapper%offer != 0) {
+				initialChocolate+=initialWrapper/offer;
+				initialWrapper=initialWrapper/offer+initialWrapper%offer;
+			}
+			totalChocolate=initialChocolate;
+			answer = "Sanjay got a total of "+totalChocolate+" choclates.";
 		}
 		else if	(m==c) {
 			answer = "Sanjay got a total of 1 chocolate.";
