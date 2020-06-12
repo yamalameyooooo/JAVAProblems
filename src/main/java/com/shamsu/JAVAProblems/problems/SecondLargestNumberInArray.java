@@ -51,6 +51,10 @@ public class SecondLargestNumberInArray {
 	               copynlist.set(i,copynlist.get(j));
 	               copynlist.set(j,temp);
 	            }
+	            else if(copynlist.get(i)==copynlist.get(j)) {
+	            	//remove dublicate without removing element to avoid concurrent exception
+	            	copynlist.set(i,0);
+	            }
 	         }
 	      }
 //		answer = "Biggest Number is: "+copynlist.get(copynlist.size()-1);
